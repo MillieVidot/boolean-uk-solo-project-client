@@ -14,24 +14,25 @@ function App() {
       <div className="container">
         <NavHeader />
         <NavMain />
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/packages" exact>
-            <PackagesPage />
-          </Route>
-          <Route path="/assets" exact>
-            <AssetsPage />
-          </Route>
-          <Route path="/quote" exact>
-            {/* < /> */}
-          </Route>
-          <Route path="/dashboard" exact>
-            <Dashboard />
-          </Route>
+        <div className="main wrapper">
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/packages" exact>
+              <PackagesPage />
+            </Route>
+            <Route path="/assets" exact>
+              <AssetsPage />
+            </Route>
+            <Route path="/quote" exact>
+              {/* < /> */}
+            </Route>
+            <Route path="/dashboard" exact>
+              <Dashboard />
+            </Route>
 
-          {/* <Route path="/guest/profile" exact>
+            {/* <Route path="/guest/profile" exact>
           {currentUser.role === "guest" ? (
             <GuestProfilePage />
           ) : (
@@ -41,7 +42,8 @@ function App() {
         <Route path="*">
           <WrongTurn />
         </Route> */}
-        </Switch>
+          </Switch>
+        </div>
         <Footer />
       </div>
     </div>

@@ -7,7 +7,7 @@ export default function QuoteCard() {
         <li>Item 2</li>
       </ul>
       <h3>£1284 p/m</h3>
-      <div onClick={console.log("Clicked Activate")}>Activate</div>
+      <div onClick={() => console.log("Clicked Activate")}>Activate</div>
     </div>
   )
 }

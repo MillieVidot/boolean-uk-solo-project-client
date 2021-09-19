@@ -8,8 +8,8 @@ export default function Dashboard() {
         <li>Item 2</li>
       </ul>
       <h3>£1284 p/m</h3>
-      <div onClick={console.log("Clicked Checkout")}>Checkout</div>
-      <div onClick={console.log("Clicked Save")}>Save</div>
+      <div onClick={() => console.log("Clicked Checkout")}>Checkout</div>
+      <div onClick={() => console.log("Clicked Save")}>Save</div>
     </div>
   )
 }

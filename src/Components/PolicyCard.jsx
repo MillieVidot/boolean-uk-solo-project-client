@@ -21,8 +21,8 @@ export default function PolicyCard() {
         </div>
       </div>
       <h3>£2038 p/m</h3>
-      <div onClick={console.log("Clicked Cancel")}>Cancel</div>
-      <div onClick={console.log("Clicked Amend")}>Amend</div>
+      <div onClick={() => console.log("Clicked Cancel")}>Cancel</div>
+      <div onClick={() => console.log("Clicked Amend")}>Amend</div>
     </div>
   )
 }

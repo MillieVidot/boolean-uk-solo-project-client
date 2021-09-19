@@ -1,10 +1,11 @@
-export default function AssetCard() {
+import React from "react"
+export default function AssetCard({ name, cost, image }) {
   return (
-    <div className="asset-card">
-      <img src="#" alt="asset" />
-      <h2>Heart</h2>
-      <span>£248</span>
-      <div>Add</div>
-    </div>
+    <li className="asset-card">
+      <img className="asset-img" src={image} alt={name} />
+      <h2>{name}</h2>
+      <span>£{cost}</span>
+      <div onClick={() => console.log("Add to quote")}>Add</div>
+    </li>
   )
 }
