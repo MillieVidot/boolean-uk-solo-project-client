@@ -9,6 +9,9 @@ export default function NavHeader() {
         <Link to="/">
           <h1>Mediclone</h1>
         </Link>
+        <button onClick={() => console.log("Opens 'get a quote' modal")}>
+          <h3>Get a Quote</h3>
+        </button>
 
         <div className="nav-icon">
           <Link to="/quote">

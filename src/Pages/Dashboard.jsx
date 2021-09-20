@@ -1,5 +1,6 @@
 import PolicyCard from "../Components/PolicyCard"
 import QuoteCard from "../Components/QuoteCard"
+import QuoteForm from "../Components/QuoteForm"
 
 export default function Dashboard() {
   return (
@@ -23,6 +24,7 @@ export default function Dashboard() {
           <QuoteCard />
         </li>
       </ul>
+      <QuoteForm />
     </div>
   )
 }

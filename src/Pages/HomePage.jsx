@@ -4,7 +4,7 @@ import hero1 from "../assets/hero1.jpg"
 export default function HomePage() {
   return (
     <div className="homepage">
-      <img className="hero" src={hero1} alt="hero-image" />
+      <img className="hero" src={hero1} alt="hero" />
       <p>Save today with this package</p>
     </div>
   )

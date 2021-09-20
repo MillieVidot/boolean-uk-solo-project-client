@@ -82,6 +82,7 @@ button {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   width: 100vw;
+
   /* border: solid 1px var(--blue-hl); */
   background-color: var(--offwhite);
   /* padding: 0 20%; */
@@ -180,6 +181,7 @@ button {
   color: white;
   background-color: var(--blue-hl);
   padding: 10px 0;
+  text-align: center;
 }
 
 /* @keyframes App-logo-spin {

@@ -7,6 +7,7 @@ import NavMain from "./Components/NavMain"
 import PackagesPage from "./Pages/PackagesPage"
 import AssetsPage from "./Pages/AssetsPage"
 import Dashboard from "./Pages/Dashboard"
+import Signup from "./Components/multisteps/signup/Signup"
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/dashboard" exact>
               <Dashboard />
+            </Route>
+            <Route path="/createaccount" exact>
+              <Signup />
             </Route>
 
             {/* <Route path="/guest/profile" exact>
