@@ -1,51 +1,27 @@
 import AssetCard from "../Components/AssetCard"
+import useStore from "../Hooks/store"
+import { useEffect } from "react"
 
 export default function PackagesPage() {
-  const packageData = [
-    {
-      id: 1,
-      name: "Vitals",
-      cost: 3499,
-      image:
-        "https://www.kindpng.com/picc/m/207-2075563_png-file-icon-white-transparent-png-medical-heart.png",
-      category: "Vitals",
-    },
-    {
-      id: 2,
-      name: "Mobilty",
-      cost: 4999,
-      image:
-        "https://www.pinclipart.com/picdir/middle/329-3295706_lungs-icon-lung-logo-clipart.png",
-      category: "Mobilty",
-    },
-    {
-      id: 3,
-      name: "Structural",
-      cost: 2249,
-      image:
-        "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
-      category: "Structural",
-    },
-    {
-      id: 4,
-      name: "Full Clone",
-      cost: 9999,
-      image:
-        "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
-      category: "none",
-    },
-  ]
+  const packageData = useStore(store => store.packages)
+  const getPackages = useStore(store => store.getPackages)
+
+  useEffect(() => {
+    getPackages()
+    console.log("packageData2:", packageData)
+  }, [])
+
   return (
     <div className="packages-page">
       <ul className="assets-list">
-        {/* {packageData.map(package => (
+        {packageData.map(deal => (
           <AssetCard
-            key={package.id}
-            name={package.name}
-            cost={package.cost}
-            image={package.image}
+            key={deal.id}
+            name={deal.name}
+            cost={deal.cost}
+            image={deal.image}
           />
-        ))} */}
+        ))}
       </ul>
     </div>
   )

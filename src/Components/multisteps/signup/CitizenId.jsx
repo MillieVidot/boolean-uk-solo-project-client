@@ -1,25 +1,21 @@
-import React from "react"
+import useFormStore from "../../../Hooks/formStore"
 
-export default function CitizenId({ nextStep, handleChange, values }) {
-  // for continue event listener
-  const Continue = e => {
-    e.preventDefault()
-    nextStep()
-  }
+export default function CitizenId({ Move, handleChange }) {
+  const citizenId = useFormStore(store => store.newUser.citizenId)
 
   return (
     <div className="citizenId-step">
-      <h1>Create Account</h1>
-
       <label>
         <h3>What is your Citizen ID?</h3>
         <input
           type="text"
           placeholder="AO123345"
-          value={values.citizenId}
+          value={citizenId}
           onChange={handleChange("citizenId")}
         />
       </label>
+
+      <button onClick={() => Move("/dashboard/usernames")}>Next</button>
     </div>
   )
 }

@@ -1,15 +1,19 @@
+import { Route, Switch } from "react-router-dom"
+import useStore from "./Hooks/store"
 import "./App.css"
-import NavHeader from "./Components/NavHeader"
 import HomePage from "./Pages/HomePage"
-import { Route, Switch, Redirect } from "react-router-dom"
-import Footer from "./Components/Footer"
-import NavMain from "./Components/NavMain"
 import PackagesPage from "./Pages/PackagesPage"
 import AssetsPage from "./Pages/AssetsPage"
 import Dashboard from "./Pages/Dashboard"
+import Basket from "./Pages/Basket"
+import NavMain from "./Components/NavMain"
 import Signup from "./Components/multisteps/signup/Signup"
+import NavHeader from "./Components/NavHeader"
+import Footer from "./Components/Footer"
+import QuoteForm from "./Components/QuoteForm"
 
 function App() {
+  const currentUser = useStore(store => store.currentUser)
   return (
     <div className="App">
       <div className="container">
@@ -26,15 +30,20 @@ function App() {
             <Route path="/assets" exact>
               <AssetsPage />
             </Route>
+            <Route path="/basket" exact>
+              <Basket />
+            </Route>
             <Route path="/quote" exact>
-              {/* < /> */}
+              <QuoteForm />
             </Route>
-            <Route path="/dashboard" exact>
-              <Dashboard />
+            <Route path="/dashboard">
+              {currentUser === "" ? (
+                <Signup />
+              ) : (
+                <Dashboard currentUser={currentUser} />
+              )}
             </Route>
-            <Route path="/createaccount" exact>
-              <Signup />
-            </Route>
+            {/* <Route path="/createaccount"></Route> */}
 
             {/* <Route path="/guest/profile" exact>
           {currentUser.role === "guest" ? (

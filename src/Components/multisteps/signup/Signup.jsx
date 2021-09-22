@@ -1,114 +1,71 @@
-import React, { Component } from "react"
+import React from "react"
 import CitizenId from "./CitizenId"
+import Confirm from "./Confirm"
 import Password from "./Password"
 import Success from "./Success"
 import UserNames from "./UserNames"
+import useFormStore from "../../../Hooks/formStore"
+import { Route, Switch } from "react-router-dom"
+import { useHistory } from "react-router"
 
-export default class Signup extends Component {
-  state = {
-    step: 1,
-    citizenId: "",
-    firstName: "",
-    lastName: "",
-    password: "",
+export default function Signup() {
+  const handleNewUserChange = useFormStore(store => store.handleNewUserChange)
+  // const addNewUser = useFormStore(store => store.addNewUser)
+
+  const history = useHistory()
+  const Move = path => {
+    history.push(path)
   }
 
-  // go back to previous step
-  prevStep = () => {
-    const { step } = this.state
-    this.setState({ step: step - 1 })
-  }
+  // function submitForm(e) {
+  //   e.preventDefault()
+  //   addNewUser()
+  //   Move("/dashboard/success")
+  // }
 
-  // proceed to the next step
-  nextStep = () => {
-    const { step } = this.state
-    this.setState({ step: step + 1 })
-  }
+  // Account/Dashboard button should take you to log in page if not logged in.
+  // Option to sign up or log in
+  // After confirming details user is logged in
+  //            - thus the dashboard should apear as per first query.
 
-  // Handle fields change
-  handleChange = input => e => {
-    this.setState({ [input]: e.target.value })
-  }
-
-  render() {
-    const { step } = this.state
-    const { citizenId, firstName, lastName, password } = this.state
-
-    const values = {
-      citizenId,
-      firstName,
-      lastName,
-      password,
-    }
-
-    switch (step) {
-      case 1:
-        return (
-          <CitizenId
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        )
-      case 2:
-        return (
-          <UserNames
-            prevStep={this.prevStep}
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        )
-      case 3:
-        return (
-          <Password
-            prevStep={this.prevStep}
-            nextStep={this.nextStep}
-            values={values}
-          />
-        )
-      case 4:
-        return <Success />
-      default:
-      // do nothing
-    }
-  }
+  return (
+    <form className="createAccount-form wrapper">
+      <h1>Create Account</h1>
+      <Switch>
+        <Route path="/dashboard" exact>
+          <CitizenId Move={Move} handleChange={handleNewUserChange} />
+        </Route>
+        <Route path="/dashboard/usernames" exact>
+          <UserNames Move={Move} handleChange={handleNewUserChange} />
+        </Route>
+        <Route path="/dashboard/password" exact>
+          <Password Move={Move} handleChange={handleNewUserChange} />
+        </Route>
+        <Route path="/dashboard/confirm" exact>
+          <Confirm Move={Move} handleChange={handleNewUserChange} />
+        </Route>
+        {/* below route not needed? */}
+        <Route path="/dashboard/success" exact>
+          <Success Move={Move} />
+        </Route>
+      </Switch>
+    </form>
+  )
 }
 
-// export default function SignUp() {
-//   // export default class Signup extends Component {
-//   const state = {
-//     step: 1,
-//     citizenId: "",
-//     firstName: "",
-//     lastName: "",
-//     password: "",
-//     nextOfKin: "",
-//   }
+// // go back to previous step
+// prevStep = () => {
+//   const { step } = this.state
+//   this.setState({ step: step - 1 })
+// }
 
-//   // go back to previous step
-//   const prevStep = () => {
-//     const { step } = this.state
-//     this.setState({ step: step - 1 })
-//   }
+// // proceed to the next step
+// nextStep = () => {
+//   const { step } = this.state
+//   this.setState({ step: step + 1 })
+// }
 
-//   // proceed to the next step
-//   const nextStep = () => {
-//     const { step } = this.state
-//     this.setState({ step: step + 1 })
-//   }
-
-//   // handle field change
-//   const handleChange = input => e => {
-//     this.setState({ [input]: e.target.value })
-//   }
-
-//   //   render() {
-//   return (
-//     <div className="signup-form">
-//       <h1>Create Account</h1>
-
-//     </div>
-//   )
-//   //   }
+// // Handle fields change
+// handleChange = input => e => {
+//   this.setState({ [input]: e.target.value })
 // }
