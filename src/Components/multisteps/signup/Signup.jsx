@@ -4,13 +4,12 @@ import Confirm from "./Confirm"
 import Password from "./Password"
 import Success from "./Success"
 import UserNames from "./UserNames"
-import useFormStore from "../../../Hooks/formStore"
+import useStore from "../../../Hooks/store"
 import { Route, Switch } from "react-router-dom"
 import { useHistory } from "react-router"
 
 export default function Signup() {
-  const handleNewUserChange = useFormStore(store => store.handleNewUserChange)
-  // const addNewUser = useFormStore(store => store.addNewUser)
+  const handleNewUserChange = useStore(store => store.handleNewUserChange)
 
   const history = useHistory()
   const Move = path => {
@@ -32,20 +31,20 @@ export default function Signup() {
     <form className="createAccount-form wrapper">
       <h1>Create Account</h1>
       <Switch>
-        <Route path="/dashboard" exact>
+        <Route path="/account/signup" exact>
           <CitizenId Move={Move} handleChange={handleNewUserChange} />
         </Route>
-        <Route path="/dashboard/usernames" exact>
+        <Route path="/account/signup/usernames" exact>
           <UserNames Move={Move} handleChange={handleNewUserChange} />
         </Route>
-        <Route path="/dashboard/password" exact>
+        <Route path="/account/signup/password" exact>
           <Password Move={Move} handleChange={handleNewUserChange} />
         </Route>
-        <Route path="/dashboard/confirm" exact>
+        <Route path="/account/signup/confirm" exact>
           <Confirm Move={Move} handleChange={handleNewUserChange} />
         </Route>
         {/* below route not needed? */}
-        <Route path="/dashboard/success" exact>
+        <Route path="/account/signup/success" exact>
           <Success Move={Move} />
         </Route>
       </Switch>

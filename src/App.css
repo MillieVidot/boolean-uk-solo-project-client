@@ -16,6 +16,7 @@
 }
 
 a {
+  color: var(--body-text);
   text-decoration: none;
 }
 a:hover {
@@ -98,8 +99,8 @@ button {
 
 .nav-header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: solid 1px var(--blue-hl);
+  grid-template-columns: 1fr 100px 40px 40px;
+  align-items: center;
   background-color: var(--offwhite);
   padding: 10px 0;
 }

@@ -1,7 +1,7 @@
-import useFormStore from "../../../Hooks/formStore"
+import useStore from "../../../Hooks/store"
 
 export default function CitizenId({ Move, handleChange }) {
-  const citizenId = useFormStore(store => store.newUser.citizenId)
+  const citizenId = useStore(store => store.newUser.citizenId)
 
   return (
     <div className="citizenId-step">
@@ -15,7 +15,7 @@ export default function CitizenId({ Move, handleChange }) {
         />
       </label>
 
-      <button onClick={() => Move("/dashboard/usernames")}>Next</button>
+      <button onClick={() => Move("/account/signup/usernames")}>Next</button>
     </div>
   )
 }

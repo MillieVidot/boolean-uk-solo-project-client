@@ -4,8 +4,8 @@ import quote from "../assets/quote.png"
 
 export default function NavHeader() {
   return (
-    <div className="wrapper">
-      <div className="nav-header">
+    <div>
+      <div className="nav-header wrapper">
         <Link to="/">
           <h1>Mediclone</h1>
         </Link>
@@ -13,14 +13,14 @@ export default function NavHeader() {
           <h3>Get a Quote</h3>
         </Link>
 
-        <div className="nav-icon">
-          <Link to="/basket">
-            <img className="icon" src={quote} alt="Quote" />
-          </Link>
-          <Link to="/dashboard">
-            <img className="icon" src={account} alt="Account" />
-          </Link>
-        </div>
+        {/* <div className="nav-icon"> */}
+        <Link to="/basket">
+          <img className="icon" src={quote} alt="Quote" />
+        </Link>
+        <Link to="/dashboard">
+          <img className="icon" src={account} alt="Account" />
+        </Link>
+        {/* </div> */}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
-import useFormStore from "../../../Hooks/formStore"
+import useStore from "../../../Hooks/store"
 
 export default function Password({ Move, handleChange }) {
-  const password = useFormStore(store => store.newUser.password)
+  const password = useStore(store => store.newUser.password)
 
   return (
     <div className="password-step">
@@ -10,14 +10,14 @@ export default function Password({ Move, handleChange }) {
       <label>
         <h3>Choose a password</h3>
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           value={password}
           onChange={handleChange("password")}
         />
       </label>
-      <button onClick={() => Move("/dashboard/usernames")}>Back</button>
-      <button onClick={() => Move("/dashboard/confirm")}>Next</button>
+      <button onClick={() => Move("/dashboard/signup/usernames")}>Back</button>
+      <button onClick={() => Move("/dashboard/signup/confirm")}>Next</button>
     </div>
   )
 }

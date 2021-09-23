@@ -1,7 +1,7 @@
-import useFormStore from "../../../Hooks/formStore"
+import useStore from "../../../Hooks/store"
 
 export default function UserNames({ Move, handleChange }) {
-  const newUser = useFormStore(store => store.newUser)
+  const newUser = useStore(store => store.newUser)
 
   const { firstName, lastName } = newUser
 
@@ -25,8 +25,8 @@ export default function UserNames({ Move, handleChange }) {
           onChange={handleChange("lastName")}
         />
       </label>
-      <button onClick={() => Move("/dashboard")}>Back</button>
-      <button onClick={() => Move("/dashboard/password")}>Next</button>
+      <button onClick={() => Move("/account/signup")}>Back</button>
+      <button onClick={() => Move("/account/signup/password")}>Next</button>
     </div>
   )
 }

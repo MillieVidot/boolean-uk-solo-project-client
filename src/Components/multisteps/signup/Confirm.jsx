@@ -1,16 +1,14 @@
-import useFormStore from "../../../Hooks/formStore"
 import useStore from "../../../Hooks/store"
 
 export default function Confirm({ Move }) {
-  const newUser = useFormStore(store => store.newUser)
-  const addNewUser = useFormStore(store => store.addNewUser)
-  const setCurrentUser = useStore(store => store.setCurrentUser)
+  const newUser = useStore(store => store.newUser)
+  const addNewUser = useStore(store => store.addNewUser)
+  // const setCurrentUser = useStore(store => store.setCurrentUser)
 
   const { citizenId, firstName, lastName } = newUser
 
   function submitForm(e) {
     e.preventDefault()
-    setCurrentUser(firstName, lastName)
     addNewUser()
     Move("/dashboard")
   }
@@ -31,7 +29,7 @@ export default function Confirm({ Move }) {
         </p>
       </button>
 
-      <button onClick={() => Move("/dashboard/password")}>Back</button>
+      <button onClick={() => Move("/account/signup/password")}>Back</button>
       <button onClick={e => submitForm(e)}>Confirm Details</button>
     </div>
   )

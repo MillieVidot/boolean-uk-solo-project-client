@@ -1,20 +1,32 @@
 import PolicyCard from "../Components/PolicyCard"
-import QuoteForm from "../Components/QuoteForm"
 import useStore from "../Hooks/store"
 import { useEffect } from "react"
 
-export default function Dashboard({ currentUser }) {
+export default function Dashboard() {
+  const currentUser = useStore(store => store.currentUser)
   const policiesData = useStore(store => store.policies)
   const getPolicies = useStore(store => store.getPolicies)
+  const setCurrentUser = useStore(store => store.setCurrentUser)
 
   useEffect(() => {
     getPolicies()
     console.log("policiesData:", policiesData)
+    console.log("currentUser:", currentUser)
   }, [])
+
+  function logOut() {
+    setCurrentUser({
+      firstName: "",
+      lastName: "",
+      citizenId: "",
+    })
+  }
 
   return (
     <div className="dashboard">
-      <h1>Hi {currentUser}</h1>
+      {/* <span>{currentUser.citizenId}</span> */}
+      <h1>Hi {currentUser.firstName}</h1>
+      <button onClick={() => logOut}>Log Out</button>
       <h2>Active Policies</h2>
       <ul className="policy-list">
         {policiesData.map(policy => (

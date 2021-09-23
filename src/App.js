@@ -1,19 +1,16 @@
 import { Route, Switch } from "react-router-dom"
-import useStore from "./Hooks/store"
 import "./App.css"
 import HomePage from "./Pages/HomePage"
 import PackagesPage from "./Pages/PackagesPage"
 import AssetsPage from "./Pages/AssetsPage"
-import Dashboard from "./Pages/Dashboard"
 import Basket from "./Pages/Basket"
 import NavMain from "./Components/NavMain"
-import Signup from "./Components/multisteps/signup/Signup"
 import NavHeader from "./Components/NavHeader"
 import Footer from "./Components/Footer"
 import QuoteForm from "./Components/QuoteForm"
+import Account from "./Pages/Account"
 
 function App() {
-  const currentUser = useStore(store => store.currentUser)
   return (
     <div className="App">
       <div className="container">
@@ -37,11 +34,7 @@ function App() {
               <QuoteForm />
             </Route>
             <Route path="/dashboard">
-              {currentUser === "" ? (
-                <Signup />
-              ) : (
-                <Dashboard currentUser={currentUser} />
-              )}
+              <Account />
             </Route>
             {/* <Route path="/createaccount"></Route> */}
 

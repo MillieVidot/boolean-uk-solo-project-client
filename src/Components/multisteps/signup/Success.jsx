@@ -1,8 +1,8 @@
-import useFormStore from "../../../Hooks/formStore"
+import useStore from "../../../Hooks/store"
 // import { useHistory } from "react-router"
 
 export default function Success({ Move }) {
-  const firstName = useFormStore(store => store.newUser.firstName)
+  const firstName = useStore(store => store.newUser.firstName)
 
   // const history = useHistory()
   // const Next = path => {
