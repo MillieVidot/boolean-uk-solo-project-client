@@ -9,7 +9,6 @@ export default function Packages() {
 
   useEffect(() => {
     getAssets()
-    console.log("assetData2:", assetData)
   }, [])
 
   return (
@@ -19,6 +18,7 @@ export default function Packages() {
         {assetData.map(asset => (
           <AssetCard
             key={asset.id}
+            id={asset.id}
             name={asset.name}
             cost={asset.cost}
             image={asset.image}

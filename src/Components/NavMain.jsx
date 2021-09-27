@@ -15,12 +15,12 @@ export default function NavMain() {
         </li>
         <li>
           <button>
-            <Link to="#">Cosmetic</Link>
+            <Link to="/cosmetic">Cosmetic</Link>
           </button>
         </li>
         <li>
           <button>
-            <Link to="#">FAQ</Link>
+            <Link to="/faq">FAQ</Link>
           </button>
         </li>
       </ul>

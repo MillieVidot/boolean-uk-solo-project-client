@@ -202,6 +202,21 @@ button {
   padding: 10px 0;
 }
 
+/* BASKET  */
+.basket-quote {
+  border: 1px solid var(--blue-hl);
+  background-color: var(--grey);
+  padding: 10px 15px;
+}
+
+.review-asset {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  padding: 5px 0;
+  margin: 5px 0;
+  border-bottom: 1px solid var(--offwhite);
+}
+
 /* FOOTER  */
 
 .footer {

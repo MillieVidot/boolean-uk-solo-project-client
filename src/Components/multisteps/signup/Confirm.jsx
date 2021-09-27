@@ -10,13 +10,11 @@ export default function Confirm({ Move }) {
   function submitForm(e) {
     e.preventDefault()
     addNewUser()
-    Move("/dashboard")
+    Move("/account")
   }
 
   return (
     <div className="success-step">
-      <h1>Create Account</h1>
-
       <h2>Check your information is correct</h2>
       <button>
         <h3>CitizenId</h3>

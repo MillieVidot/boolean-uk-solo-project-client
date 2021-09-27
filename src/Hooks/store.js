@@ -60,21 +60,17 @@ const useStore = create((set, get) => ({
       method: "POST",
       // credentials: "include",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ ...get().newUser }),
+      body: JSON.stringify(get().newUser),
     })
       .then(res => res.json())
       .then(res => {
         if (res.error) {
           throw res.error
         }
+        return res
       })
       .then(res => set({ currentUser: res }))
-      .then(res => console.log("current (new) user RES:", res))
-      .then(console.log("current (new) user:", get().currentUser))
       .then(get().clearNewUser())
-      .catch(error => {
-        throw error
-      })
   },
   logIn: userInput => {
     console.log("login function store", userInput)
@@ -82,17 +78,48 @@ const useStore = create((set, get) => ({
       method: "POST",
       // credentials: "include",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ userInput }),
+      body: JSON.stringify(userInput),
     })
       .then(res => res.json())
       .then(res => {
         if (res.error) {
           throw res.error
         }
+        return res
       })
       .then(res => set({ currentUser: res }))
-      .then(res => console.log("current user login RES:", res))
+      // .then(res => console.log("current user login RES:", res))
       .then(console.log("current login user:", get().currentUser))
+  },
+  cartItemsIds: [],
+
+  addToCart: (id, packageCat) => {
+    set({ cartItemsIds: [...get().cartItemsIds, { id, packageCat }] })
+    console.log("id added to cart", id)
+    console.log("cartItemsIds", get().cartItemsIds)
+  },
+  cartItems: [
+    // {
+    //   id: 11,
+    //   name: "Stomach",
+    //   cost: 500,
+    //   image:
+    //     "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
+    //   categoryId: 3,
+    //   packageId: 1,
+    // },
+    // {
+    //   id: 11,
+    //   name: "Stomach",
+    //   cost: 500,
+    //   image:
+    //     "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
+    //   categoryId: 3,
+    //   packageId: 1,
+    // },
+  ],
+  clearCartItems: () => {
+    set({ cartItems: [] })
   },
 }))
 

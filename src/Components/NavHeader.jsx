@@ -17,7 +17,7 @@ export default function NavHeader() {
         <Link to="/basket">
           <img className="icon" src={quote} alt="Quote" />
         </Link>
-        <Link to="/dashboard">
+        <Link to="/account">
           <img className="icon" src={account} alt="Account" />
         </Link>
         {/* </div> */}

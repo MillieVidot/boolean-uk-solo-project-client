@@ -17,6 +17,8 @@ export default function PackagesPage() {
         {packageData.map(deal => (
           <AssetCard
             key={deal.id}
+            id={deal.id}
+            packageCat={deal.packageCat}
             name={deal.name}
             cost={deal.cost}
             image={deal.image}

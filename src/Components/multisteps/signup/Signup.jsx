@@ -28,7 +28,7 @@ export default function Signup() {
   //            - thus the dashboard should apear as per first query.
 
   return (
-    <form className="createAccount-form wrapper">
+    <div className="createAccount-form wrapper">
       <h1>Create Account</h1>
       <Switch>
         <Route path="/account/signup" exact>
@@ -44,11 +44,11 @@ export default function Signup() {
           <Confirm Move={Move} handleChange={handleNewUserChange} />
         </Route>
         {/* below route not needed? */}
-        <Route path="/account/signup/success" exact>
+        {/* <Route path="/account/signup/success" exact>
           <Success Move={Move} />
-        </Route>
+        </Route> */}
       </Switch>
-    </form>
+    </div>
   )
 }
 
