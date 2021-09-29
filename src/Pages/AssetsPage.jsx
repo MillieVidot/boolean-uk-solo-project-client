@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import AssetCard from "../Components/AssetCard"
 import NavAssets from "../Components/NavAssets"
 import useStore from "../Hooks/store"

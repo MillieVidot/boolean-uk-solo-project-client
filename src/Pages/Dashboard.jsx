@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PolicyCard from "../Components/PolicyCard"
 import useStore from "../Hooks/store"
 import { useEffect } from "react"
@@ -5,11 +6,11 @@ import { useEffect } from "react"
 export default function Dashboard() {
   const currentUser = useStore(store => store.currentUser)
   const policiesData = useStore(store => store.policies)
-  const getPolicies = useStore(store => store.getPolicies)
+  const getPoliciesForUser = useStore(store => store.getPoliciesForUser)
   const setCurrentUser = useStore(store => store.setCurrentUser)
 
   useEffect(() => {
-    getPolicies()
+    getPoliciesForUser()
     console.log("policiesData:", policiesData)
     console.log("currentUser:", currentUser)
   }, [])

@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useStore from "../Hooks/store"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useHistory } from "react-router"
 
 export default function Packages() {
