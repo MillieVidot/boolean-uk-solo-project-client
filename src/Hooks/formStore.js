@@ -1,4 +1,5 @@
 // import create from "zustand"
+// const BASE_URL = process.env.REACT_APP_API_URL
 
 // const useFormStore = create((set, get) => ({
 //   newUser: {
@@ -25,7 +26,7 @@
 //   addNewUser: () => {
 //     console.log("newUser post fetch", get().newUser)
 
-//     fetch("http://localhost:3030/users", {
+//     fetch("http://${BASE_URL}:3030/users", {
 //       method: "POST",
 //       body: get().newUser,
 //     })

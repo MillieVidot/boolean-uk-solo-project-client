@@ -1,24 +1,20 @@
-// import useStore from "../store"
+import useStore from "../Hooks/store"
 
 export default function NavAssets() {
-  // const setSelectedCategory = useStore(store => store.setSelectedCategory)
-
-  function setSelectedCategory(categoryName) {
-    console.log("clicked:", categoryName)
-  }
+  const getAssetsByCategory = useStore(store => store.getAssetsByCategory)
 
   return (
     <div className="nav-assets">
       <ul>
         <li>
-          <button className="tab" onClick={() => setSelectedCategory("None")}>
+          <button className="tab" onClick={() => getAssetsByCategory("None")}>
             All
           </button>
         </li>
         <li>
           <button
             className="tab"
-            onClick={() => setSelectedCategory("Structural")}
+            onClick={() => getAssetsByCategory("Structural")}
           >
             Structural
           </button>
@@ -26,13 +22,13 @@ export default function NavAssets() {
         <li>
           <button
             className="tab"
-            onClick={() => setSelectedCategory("Mobilty")}
+            onClick={() => getAssetsByCategory("Mobilty")}
           >
             Mobilty
           </button>
         </li>
         <li>
-          <button className="tab" onClick={() => setSelectedCategory("Vitals")}>
+          <button className="tab" onClick={() => getAssetsByCategory("Vitals")}>
             Vitals
           </button>
         </li>

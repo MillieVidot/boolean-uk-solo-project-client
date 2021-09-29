@@ -32,12 +32,12 @@ export default function Dashboard() {
         {policiesData.map(policy => (
           <PolicyCard
             key={policy.id}
-            userId={policy.userId}
             quoteNumber={policy.quoteNumber}
             startDate={policy.startDate.slice(0, 10)}
             endDate={policy.endDate.slice(0, 10)}
             cost={policy.cost}
             image={policy.image}
+            // status={policy.status.stage}
           />
         ))}
       </ul>

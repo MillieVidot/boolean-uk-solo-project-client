@@ -1,17 +1,24 @@
 import useStore from "../Hooks/store"
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 export default function Packages() {
+  const BASE_URL = process.env.REACT_APP_API_URL
+  const currentUser = useStore(store => store.currentUser)
   const cartItemsIds = useStore(store => store.cartItemsIds)
   const cartItems = useStore(store => store.cartItems)
-  const clearCartItems = useStore(store => store.clearCartItems)
-  const [total, setTotal] = useState(0)
+  const refreshCartItems = useStore(store => store.refreshCartItems)
+  const clearCartItemsIds = useStore(store => store.clearCartItemsIds)
+  const setCartItems = useStore(store => store.setCartItems)
+  const purchasePolicy = useStore(store => store.purchasePolicy)
+  const cartTotal = useStore(store => store.cartTotal)
+
+  const history = useHistory()
 
   function getCartItems() {
-    // clearCartItems()
-    cartItemsIds.map(item => {
+    cartItemsIds.forEach(item => {
       if (item.packageCat) {
-        fetch(`http://localhost:3030/packages/${item.id}`)
+        fetch(`${BASE_URL}/packages/${item.id}`)
           .then(res => res.json())
           .then(res => {
             if (res.error) {
@@ -19,11 +26,9 @@ export default function Packages() {
             }
             return res
           })
-          .then(res => cartItems.push(res))
-          .then(console.log("cartItems1", cartItems))
-          .then(getTotal())
+          .then(res => setCartItems(res))
       } else {
-        fetch(`http://localhost:3030/assets/${item.id}`)
+        fetch(`${BASE_URL}/assets/${item.id}`)
           .then(res => res.json())
           .then(res => {
             if (res.error) {
@@ -31,22 +36,24 @@ export default function Packages() {
             }
             return res
           })
-          .then(res => cartItems.push(res))
-          .then(console.log("cartItems2", cartItems))
-          .then(getTotal())
+          .then(res => setCartItems(res))
       }
     })
   }
 
   useEffect(() => {
+    refreshCartItems()
     getCartItems()
-    getTotal()
   }, [])
 
-  function getTotal() {
-    cartItems.map(asset => {
-      setTotal(total + asset.cost)
-    })
+  function buyQuote() {
+    if (currentUser.firstName === "") {
+      alert("Please log in first")
+      history.push("/account")
+    } else {
+      purchasePolicy()
+      history.push("/account")
+    }
   }
 
   if (cartItems.length < 1) {
@@ -71,9 +78,14 @@ export default function Packages() {
             </li>
           ))}
         </ul>
-        <span>Total £{total} p/m</span>
-        <div onClick={() => console.log("Clicked Activate current quote")}>
-          Activate current quote
+        <span>Total £{cartTotal} p/a</span>
+        <div className="btn-nav">
+          <div className="cancel-btn" onClick={() => clearCartItemsIds()}>
+            Clear quote
+          </div>
+          <div className="submit-btn" onClick={() => buyQuote()}>
+            Buy
+          </div>
         </div>
       </div>
     </div>

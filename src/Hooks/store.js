@@ -1,5 +1,7 @@
 import create from "zustand"
 
+const BASE_URL = process.env.REACT_APP_API_URL
+
 const useStore = create((set, get) => ({
   currentUser: {
     firstName: "",
@@ -11,9 +13,14 @@ const useStore = create((set, get) => ({
   },
   assets: [],
   getAssets: () => {
-    fetch("http://localhost:3030/assets")
+    fetch(`${BASE_URL}/assets`)
       .then(res => res.json())
       .then(allAssets => set({ assets: allAssets }))
+  },
+  getAssetsByCategory: category => {
+    fetch(`${BASE_URL}/assets/${category}`)
+      .then(res => res.json())
+      .then(filteredAssets => set({ assets: filteredAssets }))
   },
   selectedCategory: "Vitals",
   setSelectedCategory: categoryName => {
@@ -21,16 +28,59 @@ const useStore = create((set, get) => ({
   },
   packages: [],
   getPackages: () => {
-    fetch("http://localhost:3030/packages")
+    fetch(`${BASE_URL}/packages`)
       .then(res => res.json())
       .then(allPackages => set({ packages: allPackages }))
   },
+
   policies: [],
-  getPolicies: () => {
-    fetch("http://localhost:3030/policies")
+  getPoliciesForUser: () => {
+    fetch(`${BASE_URL}/users/user/policies`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(get().currentUser.citizenId),
+    })
+      .then(res => console.log(res))
       .then(res => res.json())
       .then(allPolicies => set({ policies: allPolicies }))
   },
+  purchasePolicy: () => {
+    console.log("cartItemsIds", get().cartItemsIds)
+    let assets = []
+    let packages = []
+    get().cartItemsIds.forEach(item => {
+      if (item.packageCat) {
+        packages.push({ packageId: item.id })
+      } else {
+        assets.push({ assetId: item.id })
+      }
+    })
+    const policyToAdd = {
+      currentUserId: get().currentUser.id,
+      lastName: get().currentUser.lastName,
+      assetsIds: assets,
+      packagesIds: packages,
+      cost: get().cartTotal,
+    }
+
+    fetch(`${BASE_URL}/policies`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(policyToAdd),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          throw res.error
+        }
+        get().clearCartItemsIds()
+        return res
+      })
+      .then(res => console.log("addedpolicy 72", res))
+      .then(res => get().policies.unshift(res))
+    // .then(get().clearCartItemsIds())
+  },
+
   // FORM STUFF
 
   newUser: {
@@ -51,12 +101,11 @@ const useStore = create((set, get) => ({
   },
   handleNewUserChange: input => e => {
     set({ newUser: { ...get().newUser, [input]: e.target.value } })
-    console.log("newUser", get().newUser)
   },
 
   addNewUser: () => {
     console.log("newUser post fetch", get().newUser)
-    fetch("http://localhost:3030/users", {
+    fetch(`${BASE_URL}/users`, {
       method: "POST",
       // credentials: "include",
       headers: { "Content-type": "application/json" },
@@ -73,8 +122,8 @@ const useStore = create((set, get) => ({
       .then(get().clearNewUser())
   },
   logIn: userInput => {
-    console.log("login function store", userInput)
-    fetch("http://localhost:3030/users/user/login", {
+    console.log("user to log in data", userInput)
+    fetch(`${BASE_URL}/users/user/login`, {
       method: "POST",
       // credentials: "include",
       headers: { "Content-type": "application/json" },
@@ -88,38 +137,28 @@ const useStore = create((set, get) => ({
         return res
       })
       .then(res => set({ currentUser: res }))
-      // .then(res => console.log("current user login RES:", res))
-      .then(console.log("current login user:", get().currentUser))
+      .then(console.log("current loggedin user:", get().currentUser))
   },
   cartItemsIds: [],
-
+  clearCartItemsIds: () => {
+    set({ cartItemsIds: [] })
+    get().refreshCartItems()
+  },
   addToCart: (id, packageCat) => {
     set({ cartItemsIds: [...get().cartItemsIds, { id, packageCat }] })
-    console.log("id added to cart", id)
-    console.log("cartItemsIds", get().cartItemsIds)
   },
-  cartItems: [
-    // {
-    //   id: 11,
-    //   name: "Stomach",
-    //   cost: 500,
-    //   image:
-    //     "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
-    //   categoryId: 3,
-    //   packageId: 1,
-    // },
-    // {
-    //   id: 11,
-    //   name: "Stomach",
-    //   cost: 500,
-    //   image:
-    //     "https://icon-library.com/images/eyeball-icon-png/eyeball-icon-png-25.jpg",
-    //   categoryId: 3,
-    //   packageId: 1,
-    // },
-  ],
-  clearCartItems: () => {
-    set({ cartItems: [] })
+  cartItems: [],
+  cartTotal: 0,
+  setCartTotal: total => {
+    set({ cartTotal: get().cartTotal + total })
+  },
+  refreshCartItems: () => {
+    set({ cartItems: [], cartTotal: 0 })
+  },
+  setCartItems: item => {
+    set({ cartItems: [...get().cartItems, item] })
+    get().setCartTotal(item.cost)
+    console.log(get().cartItems)
   },
 }))
 

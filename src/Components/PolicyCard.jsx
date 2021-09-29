@@ -4,10 +4,14 @@ export default function PolicyCard({
   endDate,
   cost,
   image,
+  status,
 }) {
   return (
     <div className="policy-card">
-      <h3>Policy No. {quoteNumber}</h3>
+      <h3>
+        Policy No. {quoteNumber}
+        <span>{status}</span>
+      </h3>
       <div className="policy-main">
         <ul className="policy-items">
           <li>Item 1</li>

@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import useStore from "../Hooks/store"
-import { useHistory } from "react-router"
-import { Link, Route, Switch } from "react-router-dom"
-import Signup from "../Components/multisteps/signup/Signup"
+// import { useHistory } from "react-router"
+import { Link } from "react-router-dom"
 
 export default function LogIn() {
   const initialUserInput = {
@@ -12,21 +11,14 @@ export default function LogIn() {
   const logIn = useStore(store => store.logIn)
   const [userInput, setUserInput] = useState(initialUserInput)
 
-  const history = useHistory()
-  const Move = path => {
-    history.push(path)
-  }
-
   const handleSubmit = e => {
     e.preventDefault()
-    console.log("userInput handle submit", userInput)
     logIn(userInput)
     setUserInput(initialUserInput)
   }
 
   const handleChange = input => e => {
     setUserInput({ ...userInput, [input]: e.target.value })
-    console.log("userInput", userInput)
   }
 
   // Account/Dashboard button should take you to log in page if not logged in.
