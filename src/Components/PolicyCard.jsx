@@ -1,3 +1,5 @@
+import useStore from "../Hooks/store"
+
 export default function PolicyCard({
   quoteNumber,
   startDate,
@@ -6,17 +8,23 @@ export default function PolicyCard({
   image,
   status,
 }) {
+  const cancelPolicy = useStore(store => store.cancelPolicy)
+
   return (
-    <div className="policy-card">
+    <div
+      className={
+        status === "POLICY_ACTIVE" ? "policy-card blue" : "policy-card"
+      }
+    >
       <h3>
         Policy No. {quoteNumber}
-        <span>{status}</span>
+        <span> {status}</span>
       </h3>
       <div className="policy-main">
         <ul className="policy-items">
-          <li>Item 1</li>
+          {/* <li>Item 1</li>
           <li>Item 2</li>
-          <li>Package 1</li>
+          <li>Package 1</li> */}
         </ul>
         <div className="policy-details">
           <div>
@@ -34,7 +42,7 @@ export default function PolicyCard({
         </div>
       </div>
       <div className="policy-card-nav">
-        <div onClick={() => console.log("Clicked Cancel")}>Cancel</div>
+        <div onClick={() => cancelPolicy(quoteNumber)}>Cancel</div>
         <div onClick={() => console.log("Clicked Amend")}>Amend</div>
       </div>
     </div>

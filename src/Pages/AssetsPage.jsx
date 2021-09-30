@@ -13,7 +13,7 @@ export default function Packages() {
   }, [])
 
   return (
-    <div className="assets-page wrapper">
+    <div className="assets-page">
       <NavAssets />
       <ul className="assets-list">
         {assetData.map(asset => (

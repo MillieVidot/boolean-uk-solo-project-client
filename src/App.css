@@ -71,6 +71,10 @@ button {
   width: 100px;
 }
 
+.cross:hover {
+  color: var(--blue-ll);
+}
+
 .submit-btn:hover {
   background-color: var(--blue-ll);
 }
@@ -165,9 +169,8 @@ button {
 /* ASSETS  */
 
 /* .assets-page {
-  justify-content: center;
   display: grid;
-  place-content: center;
+  grid-template-columns: 100%;
 } */
 
 .assets-list {
@@ -233,6 +236,10 @@ button {
   padding: 10px 0;
 }
 
+.blue {
+  border: 1px solid var(--blue-ll);
+}
+
 /* BASKET  */
 .basket-quote {
   border: 1px solid var(--blue-hl);
@@ -242,7 +249,7 @@ button {
 
 .review-asset {
   display: grid;
-  grid-template-columns: 1fr 50px;
+  grid-template-columns: 1fr 50px 30px;
   padding: 5px 0;
   margin: 5px 0;
   border-bottom: 1px solid var(--offwhite);

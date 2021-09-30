@@ -10,9 +10,11 @@ export default function Dashboard() {
   const setCurrentUser = useStore(store => store.setCurrentUser)
 
   useEffect(() => {
-    getPoliciesForUser()
-    console.log("policiesData:", policiesData)
-    console.log("currentUser:", currentUser)
+    if (currentUser.firstName !== "") {
+      getPoliciesForUser(currentUser.citizenId)
+    }
+    console.log("policiesData useEffect:", policiesData)
+    console.log("currentUser.citizenId useEffect:", currentUser.citizenId)
   }, [])
 
   function logOut() {
@@ -23,11 +25,20 @@ export default function Dashboard() {
     })
   }
 
+  if (policiesData < 1) {
+    return (
+      <div className="assets-page wrapper">
+        <h1>Hi {currentUser.firstName}</h1>
+        <h3>Policies loading...</h3>
+      </div>
+    )
+  }
+
   return (
     <div className="dashboard">
       {/* <span>{currentUser.citizenId}</span> */}
       <h1>Hi {currentUser.firstName}</h1>
-      <button onClick={() => logOut}>Log Out</button>
+      <button onClick={() => logOut()}>Log Out</button>
       <h2>Active Policies</h2>
       <ul className="policy-list">
         {policiesData.map(policy => (
@@ -38,7 +49,7 @@ export default function Dashboard() {
             endDate={policy.endDate.slice(0, 10)}
             cost={policy.cost}
             image={policy.image}
-            // status={policy.status.stage}
+            status={policy.status.stage}
           />
         ))}
       </ul>

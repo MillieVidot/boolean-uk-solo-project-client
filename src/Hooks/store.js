@@ -34,15 +34,15 @@ const useStore = create((set, get) => ({
   },
 
   policies: [],
-  getPoliciesForUser: () => {
+  getPoliciesForUser: citizenId => {
     fetch(`${BASE_URL}/users/user/policies`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(get().currentUser.citizenId),
+      body: JSON.stringify({ citizenId }),
     })
-      .then(res => console.log(res))
       .then(res => res.json())
-      .then(allPolicies => set({ policies: allPolicies }))
+      // .then(res => console.log("res 44", res))
+      .then(allPolicies => set({ policies: allPolicies[0].policies }))
   },
   purchasePolicy: () => {
     console.log("cartItemsIds", get().cartItemsIds)
@@ -79,6 +79,37 @@ const useStore = create((set, get) => ({
       .then(res => console.log("addedpolicy 72", res))
       .then(res => get().policies.unshift(res))
     // .then(get().clearCartItemsIds())
+  },
+  cancelPolicy: quoteNumber => {
+    console.log("quote number to cancel", quoteNumber)
+
+    fetch(`${BASE_URL}/policies`, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ quoteNumber }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          throw res.error
+        }
+        return res
+      })
+      // .then(res => console.log("updated policy 98", res))
+      .then(res =>
+        set({
+          policies: get().policies.map(policy => {
+            if (policy.quoteNumber === quoteNumber) {
+              return (policy = {
+                ...policy,
+                status: { stage: "POLICY_CANCELLED" },
+              })
+            } else {
+              return policy
+            }
+          }),
+        })
+      )
   },
 
   // FORM STUFF
@@ -136,16 +167,21 @@ const useStore = create((set, get) => ({
         }
         return res
       })
+      // .then(res => console.log("142 logged in:", res))
       .then(res => set({ currentUser: res }))
-      .then(console.log("current loggedin user:", get().currentUser))
+    // .then(console.log("current loggedin user:", get().currentUser))
+    // .then(get().getPoliciesForUser())
   },
   cartItemsIds: [],
+  setCartItemsIds: ids => {
+    set({ cartItemsIds: ids })
+  },
   clearCartItemsIds: () => {
     set({ cartItemsIds: [] })
     get().refreshCartItems()
   },
-  addToCart: (id, packageCat) => {
-    set({ cartItemsIds: [...get().cartItemsIds, { id, packageCat }] })
+  addToCart: (id, name, packageCat) => {
+    set({ cartItemsIds: [...get().cartItemsIds, { id, name, packageCat }] })
   },
   cartItems: [],
   cartTotal: 0,

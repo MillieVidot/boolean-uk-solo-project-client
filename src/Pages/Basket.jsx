@@ -7,6 +7,7 @@ export default function Packages() {
   const BASE_URL = process.env.REACT_APP_API_URL
   const currentUser = useStore(store => store.currentUser)
   const cartItemsIds = useStore(store => store.cartItemsIds)
+  const setCartItemsIds = useStore(store => store.setCartItemsIds)
   const cartItems = useStore(store => store.cartItems)
   const refreshCartItems = useStore(store => store.refreshCartItems)
   const clearCartItemsIds = useStore(store => store.clearCartItemsIds)
@@ -45,7 +46,7 @@ export default function Packages() {
   useEffect(() => {
     refreshCartItems()
     getCartItems()
-  }, [])
+  }, [cartItemsIds])
 
   function buyQuote() {
     if (currentUser.firstName === "") {
@@ -55,6 +56,17 @@ export default function Packages() {
       purchasePolicy()
       history.push("/account")
     }
+  }
+
+  function removeFromCart(itemName) {
+    console.log("remove:", itemName)
+    const remainingItemIds = cartItemsIds.filter(item => item.name !== itemName)
+    const remainingCartItems = cartItems.filter(item => item.name !== itemName)
+    console.log("remainingItemIds", remainingItemIds)
+    setCartItemsIds(remainingItemIds)
+    // console.log("remainingCartItems", remainingCartItems)
+    setCartItems(remainingCartItems)
+    // refreshCartItems()
   }
 
   if (cartItems.length < 1) {
@@ -76,6 +88,9 @@ export default function Packages() {
             <li key={cartItems.indexOf(item)} className="review-asset">
               <span>{item.name}</span>
               <span>{item.cost}</span>
+              <span className="cross" onClick={() => removeFromCart(item.name)}>
+                ✕
+              </span>
             </li>
           ))}
         </ul>

@@ -33,7 +33,7 @@ export default function LogIn() {
       <h1>Log In</h1>
       <form onSubmit={e => handleSubmit(e)}>
         <label>
-          <h3>What is your Citizen ID?</h3>
+          <h3>Enter Citizen ID</h3>
           <input
             type="text"
             placeholder="AO123345"
@@ -42,7 +42,7 @@ export default function LogIn() {
           />
         </label>
         <label>
-          <h3>Choose a password</h3>
+          <h3>Password</h3>
           <input
             type="password"
             placeholder="Password"
@@ -52,7 +52,7 @@ export default function LogIn() {
         </label>
         <button type="submit">Enter</button>
       </form>
-      <Link to="/account/signup">or Create New Account</Link>
+      <Link to="/account/signup">or Create an Account</Link>
       {/* <button onClick={() => Move("/account/signup")}>
         or Create New Account
       </button> */}
