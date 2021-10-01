@@ -8,7 +8,7 @@ export default function UserNames({ Move, handleChange }) {
   return (
     <div className="firstName-step">
       <label>
-        <h3>Tell us your first name.</h3>
+        <h3>Enter First Name.</h3>
         <input
           type="text"
           placeholder="First Name"
@@ -17,7 +17,7 @@ export default function UserNames({ Move, handleChange }) {
         />
       </label>
       <label>
-        <h3>Tell us your last name.</h3>
+        <h3>Enter Last Name.</h3>
         <input
           type="text"
           placeholder="Last Name"
@@ -25,8 +25,15 @@ export default function UserNames({ Move, handleChange }) {
           onChange={handleChange("lastName")}
         />
       </label>
-      <button onClick={() => Move("/account/signup")}>Back</button>
-      <button onClick={() => Move("/account/signup/password")}>Next</button>
+      <button className="backBtn" onClick={() => Move("/account/signup")}>
+        Back
+      </button>
+      <button
+        className="nextBtn"
+        onClick={() => Move("/account/signup/password")}
+      >
+        Next
+      </button>
     </div>
   )
 }

@@ -25,20 +25,40 @@ export default function Confirm({ Move }) {
 
   return (
     <div className="success-step">
-      <h3>Check your information is correct</h3>
-      <button>
-        <h4>CitizenId</h4>
+      <h3>Confirm Correct Details</h3>
+      <div>
+        <h3>CitizenId</h3>
         <p>{citizenId}</p>
-      </button>
-      <button>
-        <h4>Full Name</h4>
+      </div>
+      <div>
+        <h3>Full Name</h3>
         <p>
           {firstName} {lastName}
         </p>
-      </button>
+      </div>
 
-      <button onClick={() => Move("/account/signup/password")}>Back</button>
-      <button onClick={e => submitForm(e)}>Confirm Details</button>
+      <button
+        className="backBtn"
+        onClick={() => Move("/account/signup/password")}
+      >
+        Back
+      </button>
+      <button className="nextBtn" onClick={e => submitForm(e)}>
+        Confirm
+      </button>
     </div>
   )
+}
+
+{
+  /* <button onClick={() => Move("/account/signup/signup")}>
+<h4>CitizenId</h4>
+<p>{citizenId}</p>
+</button>
+<button onClick={() => Move("/account/signup/usernames")}>
+<h4>Full Name</h4>
+<p>
+  {firstName} {lastName}
+</p>
+</button> */
 }

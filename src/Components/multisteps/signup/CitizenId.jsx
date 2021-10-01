@@ -6,7 +6,7 @@ export default function CitizenId({ Move, handleChange }) {
   return (
     <div className="citizenId-step">
       <label>
-        <h3>What is your Citizen ID?</h3>
+        <h3>Enter your Citizen ID</h3>
         <input
           type="text"
           placeholder="AO123345"
@@ -16,7 +16,12 @@ export default function CitizenId({ Move, handleChange }) {
         />
       </label>
 
-      <button onClick={() => Move("/account/signup/usernames")}>Next</button>
+      <button
+        className="nextBtn"
+        onClick={() => Move("/account/signup/usernames")}
+      >
+        Next
+      </button>
     </div>
   )
 }

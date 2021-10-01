@@ -6,7 +6,7 @@ export default function Password({ Move, handleChange }) {
   return (
     <div className="password-step">
       <label>
-        <h3>Choose a password</h3>
+        <h3>Choose a Password</h3>
         <input
           type="password"
           placeholder="Password"
@@ -15,8 +15,18 @@ export default function Password({ Move, handleChange }) {
           required
         />
       </label>
-      <button onClick={() => Move("/account/signup/usernames")}>Back</button>
-      <button onClick={() => Move("/account/signup/confirm")}>Next</button>
+      <button
+        className="backBtn"
+        onClick={() => Move("/account/signup/usernames")}
+      >
+        Back
+      </button>
+      <button
+        className="nextBtn"
+        onClick={() => Move("/account/signup/confirm")}
+      >
+        Next
+      </button>
     </div>
   )
 }

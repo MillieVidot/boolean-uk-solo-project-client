@@ -25,17 +25,20 @@ a:hover {
 
 h1 {
   font-size: 1.8rem;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 8px;
 }
 
 h2 {
   font-size: 1.4rem;
-  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 h3 {
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 /* .h3span {
   font-size: 1rem;
@@ -247,6 +250,21 @@ button {
   padding: 5px 10px;
 
   border-radius: 30px;
+}
+
+.createAccount-form .backBtn {
+  text-align: center;
+  padding: 8px 11px;
+  border-radius: 30px;
+  border: 1px solid var(--grey);
+  width: 100px;
+}
+.createAccount-form .nextBtn {
+  text-align: center;
+  background-color: var(--blue-hl);
+  padding: 8px 11px;
+  border-radius: 30px;
+  width: 100px;
 }
 
 /* DASHBOARD */
