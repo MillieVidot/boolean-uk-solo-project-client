@@ -50,8 +50,8 @@ export default function Confirm({ Move }) {
   )
 }
 
-{
-  /* <button onClick={() => Move("/account/signup/signup")}>
+// {
+/* <button onClick={() => Move("/account/signup/signup")}>
 <h4>CitizenId</h4>
 <p>{citizenId}</p>
 </button>
@@ -61,4 +61,4 @@ export default function Confirm({ Move }) {
   {firstName} {lastName}
 </p>
 </button> */
-}
+// }
