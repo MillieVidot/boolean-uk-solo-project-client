@@ -9,19 +9,29 @@ export default function Confirm({ Move }) {
 
   function submitForm(e) {
     e.preventDefault()
+    if (
+      newUser.citizenId === "" &&
+      newUser.firstName === "" &&
+      newUser.lastName === "" &&
+      newUser.password === ""
+    ) {
+      alert("Please check you have filled all fields")
+      return
+    }
+
     addNewUser()
     Move("/account")
   }
 
   return (
     <div className="success-step">
-      <h2>Check your information is correct</h2>
+      <h3>Check your information is correct</h3>
       <button>
-        <h3>CitizenId</h3>
+        <h4>CitizenId</h4>
         <p>{citizenId}</p>
       </button>
       <button>
-        <h3>Full Name</h3>
+        <h4>Full Name</h4>
         <p>
           {firstName} {lastName}
         </p>

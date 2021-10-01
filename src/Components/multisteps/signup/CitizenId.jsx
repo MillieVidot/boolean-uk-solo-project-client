@@ -12,6 +12,7 @@ export default function CitizenId({ Move, handleChange }) {
           placeholder="AO123345"
           value={citizenId}
           onChange={handleChange("citizenId")}
+          required
         />
       </label>
 

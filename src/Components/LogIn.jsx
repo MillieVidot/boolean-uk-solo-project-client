@@ -39,6 +39,7 @@ export default function LogIn() {
             placeholder="AO123345"
             value={userInput.citizenId}
             onChange={handleChange("citizenId")}
+            required
           />
         </label>
         <label>
@@ -48,6 +49,7 @@ export default function LogIn() {
             placeholder="Password"
             value={userInput.password}
             onChange={handleChange("password")}
+            required
           />
         </label>
         <button type="submit">Enter</button>

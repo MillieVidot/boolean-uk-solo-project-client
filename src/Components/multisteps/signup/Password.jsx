@@ -12,6 +12,7 @@ export default function Password({ Move, handleChange }) {
           placeholder="Password"
           value={password}
           onChange={handleChange("password")}
+          required
         />
       </label>
       <button onClick={() => Move("/account/signup/usernames")}>Back</button>
