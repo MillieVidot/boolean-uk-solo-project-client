@@ -6,6 +6,7 @@ export default function HomePage() {
   return (
     <div className="homepage">
       <img className="hero" src={hero1} alt="hero" />
+      <h1>Insure a better future today with Mediclone</h1>
       {/* <h2>Save today with this package</h2> */}
       <img className="trust" src={trustpilot} alt="hero" />
     </div>
