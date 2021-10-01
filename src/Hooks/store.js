@@ -76,7 +76,10 @@ const useStore = create((set, get) => ({
         get().clearCartItemsIds()
         return res
       })
-      .then(res => console.log("addedpolicy 72", res))
+      .then(res => {
+        console.log("addedpolicy 72", res)
+        return res
+      })
       .then(res => get().policies.unshift(res))
     // .then(get().clearCartItemsIds())
   },

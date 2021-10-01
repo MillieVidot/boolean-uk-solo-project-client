@@ -29,6 +29,7 @@ export default function Dashboard() {
     return (
       <div className="assets-page wrapper">
         <h1>Hi {currentUser.firstName}</h1>
+        <button onClick={() => logOut()}>Log Out</button>
         <h3>Policies loading...</h3>
       </div>
     )
