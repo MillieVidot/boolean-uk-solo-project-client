@@ -79,7 +79,7 @@ export default function Packages() {
   }
 
   return (
-    <div className="assets-page wrapper">
+    <div className="basket-page wrapper">
       <h1>BASKET</h1>
       <div className="basket-quote">
         <h3>Review quote</h3>

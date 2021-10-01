@@ -18,9 +18,10 @@ const useStore = create((set, get) => ({
       .then(allAssets => set({ assets: allAssets }))
   },
   getAssetsByCategory: category => {
-    fetch(`${BASE_URL}/assets/${category}`)
-      .then(res => res.json())
-      .then(filteredAssets => set({ assets: filteredAssets }))
+    console.log(`Selected category: ${category}`)
+    // fetch(`${BASE_URL}/assets/${category}`)
+    //   .then(res => res.json())
+    //   .then(filteredAssets => set({ assets: filteredAssets }))
   },
   selectedCategory: "Vitals",
   setSelectedCategory: categoryName => {

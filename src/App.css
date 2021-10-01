@@ -56,6 +56,13 @@ ul {
 .icon {
   width: 20px;
 }
+.icon:hover {
+  opacity: 40%;
+}
+
+.icon:active {
+  opacity: 80%;
+}
 
 button {
   background-color: rgba(255, 255, 255, 0);
@@ -272,8 +279,9 @@ button {
 /* BASKET  */
 .basket-quote {
   border: 1px solid var(--blue-hl);
-  background-color: var(--grey);
-  padding: 10px 15px;
+  background-color: rgb(244, 251, 255);
+  padding: 15px 20px;
+  border-radius: 20px;
 }
 
 .review-asset {
