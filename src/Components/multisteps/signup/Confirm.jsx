@@ -10,9 +10,9 @@ export default function Confirm({ Move }) {
   function submitForm(e) {
     e.preventDefault()
     if (
-      newUser.citizenId === "" &&
-      newUser.firstName === "" &&
-      newUser.lastName === "" &&
+      newUser.citizenId === "" ||
+      newUser.firstName === "" ||
+      newUser.lastName === "" ||
       newUser.password === ""
     ) {
       alert("Please check you have filled all fields")
